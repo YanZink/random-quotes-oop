@@ -1,3 +1,3 @@
 import RandomQuotesApp from "./src/classes/RandomQuotesApp.js";
 
-new RandomQuotesApp();
+new RandomQuotesApp(); // launching the application

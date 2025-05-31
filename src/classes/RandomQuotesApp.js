@@ -8,15 +8,14 @@ class RandomQuotesApp {
     this.currentQuote = null;
     this.init();
   }
-  displayCurrentOuote() {
-    const { text, author } = this.currentQuote;
-    this.quoteTextElement.textContent = `"${text}"`;
-    this.quoteAuthorElement.textContent = author;
+  displayCurrentQuote() {
+    this.quoteTextElement.textContent = this.currentQuote.formatText(); // Quote class method
+    this.quoteAuthorElement.textContent = this.currentQuote.formatAuthor(); // Quote class method
   }
   getRandomQuote() {
-    const randomQuote = RandomQuote.getRandomQuote();
+    const randomQuote = RandomQuote.getRandomQuote(); //RandomQuote.getRandomQuote() - private class method
     this.currentQuote = randomQuote;
-    this.displayCurrentOuote();
+    this.displayCurrentQuote();
   }
   init() {
     this.randomquoteBtn.addEventListener("click", () => this.getRandomQuote());

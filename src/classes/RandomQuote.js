@@ -6,7 +6,7 @@ class RandomQuote {
   static getRandomQuote() {
     const randomIndex = MathUtils.generateRandomInt(quotes.length);
     const { id, text, author } = quotes[randomIndex];
-    return new Quote(id, text, author);
+    return new Quote(id, text, author); // create a random quote
   }
 }
 
