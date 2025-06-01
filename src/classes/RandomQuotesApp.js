@@ -1,8 +1,10 @@
+import Quote from "./Quote.js";
 import RandomQuote from "./RandomQuote.js";
 
 class RandomQuotesApp {
   constructor() {
-    this.randomquoteBtn = document.getElementById("random-quote-btn");
+    this.randomQuoteBtn = document.getElementById("random-quote-btn");
+    this.randomQuoteAPIBtn = document.getElementById("random-quote-api-btn");
     this.quoteTextElement = document.getElementById("quote-text");
     this.quoteAuthorElement = document.getElementById("quote-author");
     this.currentQuote = null;
@@ -12,13 +14,26 @@ class RandomQuotesApp {
     this.quoteTextElement.textContent = this.currentQuote.formatText(); // Quote class method
     this.quoteAuthorElement.textContent = this.currentQuote.formatAuthor(); // Quote class method
   }
+
+  changeCurrentQuote(newQuote) {
+    if (newQuote instanceof Quote) {
+      this.currentQuote = newQuote;
+      this.displayCurrentQuote();
+    }
+  }
   getRandomQuote() {
-    const randomQuote = RandomQuote.getRandomQuote(); //RandomQuote.getRandomQuote() - private class method
-    this.currentQuote = randomQuote;
-    this.displayCurrentQuote();
+    this.changeCurrentQuote(RandomQuote.getRandomQuote()); //RandomQuote.getRandomQuote() - private class method
+  }
+  getRandomQuoteViaAPI() {
+    RandomQuote.getRandomQuoteViaAPI().then((quote) =>
+      this.changeCurrentQuote(quote)
+    );
   }
   init() {
-    this.randomquoteBtn.addEventListener("click", () => this.getRandomQuote());
+    this.randomQuoteBtn.addEventListener("click", () => this.getRandomQuote());
+    this.randomQuoteAPIBtn.addEventListener("click", () =>
+      this.getRandomQuoteViaAPI()
+    );
   }
 }
 
