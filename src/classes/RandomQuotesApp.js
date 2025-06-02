@@ -24,11 +24,11 @@ class RandomQuotesApp {
   getRandomQuote() {
     this.changeCurrentQuote(RandomQuote.getRandomQuote()); //RandomQuote.getRandomQuote() - private class method
   }
-  getRandomQuoteViaAPI() {
-    RandomQuote.getRandomQuoteViaAPI().then((quote) =>
-      this.changeCurrentQuote(quote)
-    );
+
+  async getRandomQuoteViaAPI() {
+    this.changeCurrentQuote(await RandomQuote.getRandomQuoteViaAPI());
   }
+
   init() {
     this.randomQuoteBtn.addEventListener("click", () => this.getRandomQuote());
     this.randomQuoteAPIBtn.addEventListener("click", () =>
