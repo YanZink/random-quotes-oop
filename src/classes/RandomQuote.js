@@ -15,7 +15,9 @@ class RandomQuote {
     try {
       const responce = await fetch(url, options);
       const { id, quote: text, author } = await responce.json();
-      return new Quote(id, text, author);
+      if (id && text && author) {
+        return new Quote(id, text, author);
+      }
     } catch (error) {
       console.error(error); // return undefined implicitle (resolves promise to undefined)
     }
